@@ -11,7 +11,7 @@ const projetos = [
   },
   {
     titulo: "Carimbo",
-    imagem: "",
+    imagem: "img/carimbo.jpg",
     ano: "2026",
     descricao: "Sistema multiempresa para agências de marketing e social media: clientes, contratos, cobranças por boleto/Pix com baixa automática, calendário de conteúdo, portal de aprovação do cliente, tarefas, métricas e legendas geradas por IA.",
     tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Claude API"],
@@ -21,7 +21,7 @@ const projetos = [
   },
   {
     titulo: "Meu Sabor",
-    imagem: "",
+    imagem: "img/meu-sabor.jpg",
     ano: "2026",
     descricao: "ERP interno e enxuto para uma distribuidora de temperos: o vendedor tira o pedido no celular, a separação vê a demanda consolidada dos pedidos contra o estoque e o gerente acompanha o dia.",
     tecnologias: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Vitest"],
@@ -31,7 +31,7 @@ const projetos = [
   },
   {
     titulo: "André Feliph",
-    imagem: "",
+    imagem: "img/andre-feliph.jpg",
     ano: "2026",
     descricao: "Plataforma de cursos com acesso liberado por plano pago: alunos, cursos, aulas, turmas, progresso, checkout, certificados em PDF com QR Code e validação pública, além de automações por WhatsApp e e-mail.",
     tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
@@ -41,7 +41,7 @@ const projetos = [
   },
   {
     titulo: "Souza Tech OS",
-    imagem: "",
+    imagem: "img/souza-tech-os.jpg",
     ano: "2026",
     descricao: "Sistema interno da Souza Tech que centraliza clientes, sistemas, projetos, tarefas, roadmap, contratos, licenças, financeiro e infraestrutura. Monorepo com testes E2E e deploy em VPS com Docker.",
     tecnologias: ["React", "Vite", "Express", "Prisma", "PostgreSQL", "Turborepo", "Docker"],
@@ -51,9 +51,9 @@ const projetos = [
   },
   {
     titulo: "DEZFLOW",
-    imagem: "",
+    imagem: "img/dezflow.jpg",
     ano: "2026",
-    descricao: "Sistema de gestão para uma barbearia: agenda, atendimento, financeiro, comissão automática, estoque e fidelização. Monorepo com contrato de API em OpenAPI compartilhado entre front e back.",
+    descricao: "Em desenvolvimento. Sistema de gestão para uma barbearia: agenda, atendimento, financeiro, comissão automática, estoque e fidelização. Monorepo com contrato de API em OpenAPI compartilhado entre front e back.",
     tecnologias: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
     demo: "",
     codigo: "",
@@ -61,7 +61,7 @@ const projetos = [
   },
   {
     titulo: "Taldo Manager",
-    imagem: "",
+    imagem: "img/taldo-manager.jpg",
     ano: "2026",
     descricao: "Simulador de futebol estilo Football Manager feito do zero para estudar orientação a objetos e arquitetura: temporadas completas com escalação, lesões, suspensões e estatísticas. Arquitetura em camadas e 153 testes.",
     tecnologias: ["Python", "FastAPI", "SQLite", "JavaScript", "pytest"],
@@ -70,7 +70,7 @@ const projetos = [
   },
   {
     titulo: "Souza Tech",
-    imagem: "",
+    imagem: "img/souza-tech.jpg",
     ano: "2026",
     descricao: "Landing page da Souza Tech, com a logo animada em HTML/CSS (respeitando prefers-reduced-motion) e um kit de logo em SVG.",
     tecnologias: ["HTML", "CSS", "SVG"],
