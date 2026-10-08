@@ -4,19 +4,78 @@ const projetos = [
     titulo: "Fluxoly",
     imagem: "img/fluxoly.jpg",
     ano: "2026",
-    descricao: "Plataforma de gestão para lojas de dispositivos móveis premium: vendas, estoque, tabela de preços, assistência técnica, garantias e relatórios em um único fluxo.",
-    tecnologias: ["React", "Vite", "Tailwind CSS", "Python", "Flask", "SQLite"],
+    descricao: "Plataforma de gestão para lojas de dispositivos móveis premium: vendas, estoque, tabela de preços, assistência técnica, garantias e relatórios em um único fluxo. Em produção.",
+    tecnologias: ["React", "Vite", "Tailwind CSS", "Python", "Flask", "SQLite", "pytest", "Playwright"],
     demo: "https://assistencia-system.vercel.app",
-    codigo: "https://github.com/TaldoDustin/assistencia_system",
+    codigo: "https://github.com/isaque-souza/assistencia_system",
+  },
+  {
+    titulo: "Carimbo",
+    imagem: "",
+    ano: "2026",
+    descricao: "Sistema multiempresa para agências de marketing e social media: clientes, contratos, cobranças por boleto/Pix com baixa automática, calendário de conteúdo, portal de aprovação do cliente, tarefas, métricas e legendas geradas por IA.",
+    tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Claude API"],
+    demo: "",
+    codigo: "",
+    privado: true,
   },
   {
     titulo: "Meu Sabor",
     imagem: "",
     ano: "2026",
     descricao: "ERP interno e enxuto para uma distribuidora de temperos: o vendedor tira o pedido no celular, a separação vê a demanda consolidada dos pedidos contra o estoque e o gerente acompanha o dia.",
-    tecnologias: ["Next.js", "React", "Prisma", "PostgreSQL"],
+    tecnologias: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Vitest"],
     demo: "",
     codigo: "",
+    privado: true,
+  },
+  {
+    titulo: "André Feliph",
+    imagem: "",
+    ano: "2026",
+    descricao: "Plataforma de cursos com acesso liberado por plano pago: alunos, cursos, aulas, turmas, progresso, checkout, certificados em PDF com QR Code e validação pública, além de automações por WhatsApp e e-mail.",
+    tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    demo: "",
+    codigo: "",
+    privado: true,
+  },
+  {
+    titulo: "Souza Tech OS",
+    imagem: "",
+    ano: "2026",
+    descricao: "Sistema interno da Souza Tech que centraliza clientes, sistemas, projetos, tarefas, roadmap, contratos, licenças, financeiro e infraestrutura. Monorepo com testes E2E e deploy em VPS com Docker.",
+    tecnologias: ["React", "Vite", "Express", "Prisma", "PostgreSQL", "Turborepo", "Docker"],
+    demo: "",
+    codigo: "",
+    privado: true,
+  },
+  {
+    titulo: "DEZFLOW",
+    imagem: "",
+    ano: "2026",
+    descricao: "Sistema de gestão para uma barbearia: agenda, atendimento, financeiro, comissão automática, estoque e fidelização. Monorepo com contrato de API em OpenAPI compartilhado entre front e back.",
+    tecnologias: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
+    demo: "",
+    codigo: "",
+    privado: true,
+  },
+  {
+    titulo: "Taldo Manager",
+    imagem: "",
+    ano: "2026",
+    descricao: "Simulador de futebol estilo Football Manager feito do zero para estudar orientação a objetos e arquitetura: temporadas completas com escalação, lesões, suspensões e estatísticas. Arquitetura em camadas e 153 testes.",
+    tecnologias: ["Python", "FastAPI", "SQLite", "JavaScript", "pytest"],
+    demo: "",
+    codigo: "https://github.com/isaque-souza/TaldoManager",
+  },
+  {
+    titulo: "Souza Tech",
+    imagem: "",
+    ano: "2026",
+    descricao: "Landing page da Souza Tech, com a logo animada em HTML/CSS (respeitando prefers-reduced-motion) e um kit de logo em SVG.",
+    tecnologias: ["HTML", "CSS", "SVG"],
+    demo: "https://isaque-souza.github.io/souza-tech/",
+    codigo: "https://github.com/isaque-souza/souza-tech",
   },
   {
     titulo: "BeKind",
@@ -24,14 +83,15 @@ const projetos = [
     ano: "2023",
     descricao: "Projeto de TCC do curso técnico na ETEC Guarulhos. 3º melhor projeto na FECEG e semifinalista na FEBRACE.",
     tecnologias: ["HTML", "CSS", "JavaScript"],
-    demo: "",
-    codigo: "https://github.com/TaldoDustin/TCC-Bekind",
+    demo: "https://isaque-souza.github.io/TCC-Bekind/",
+    codigo: "https://github.com/isaque-souza/TCC-Bekind",
   },
 ];
 
 const tecnologias = [
-  "React", "Next.js", "Python", "Flask", "PHP", "HTML", "CSS", "Tailwind CSS",
-  "SQL", "PostgreSQL", "MySQL", "SQLite", "Prisma", "APIs REST", "Git", "GitHub",
+  "React", "Next.js", "TypeScript", "Python", "Flask", "FastAPI", "Node.js", "Express",
+  "PHP", "HTML", "CSS", "Tailwind CSS", "SQL", "PostgreSQL", "MySQL", "SQLite", "Prisma",
+  "APIs REST", "Docker", "pytest", "Playwright", "Git", "GitHub",
 ];
 
 function criarElemento(tag, classe, texto) {
@@ -66,6 +126,7 @@ function renderizarProjetos() {
     const links = criarElemento("div", "project-links");
     if (projeto.demo) links.append(criarLink("Ver demo ↗", projeto.demo));
     if (projeto.codigo) links.append(criarLink("Código ↗", projeto.codigo));
+    if (projeto.privado) links.append(criarElemento("span", "project-private", "Código privado"));
 
     // Sem imagem, o card mostra o nome do projeto no lugar da captura
     const capa = criarElemento("div", "project-cover");

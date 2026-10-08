@@ -237,3 +237,4 @@ h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4.5vw, 
   .nav.open { display: flex; }
   .nav a { padding: 12px 0; }
 }
+.project-private { color: var(--muted); font-weight: 400; }
