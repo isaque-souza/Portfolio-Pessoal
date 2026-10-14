@@ -1,40 +1,38 @@
 // Para adicionar um novo projeto, basta incluir um item na lista.
+// formato: "destaque" (grande, com lista de funcionalidades), "card" ou "linha" (lista de outros projetos).
+// cor: cor da marca do projeto, usada no fundo da capa e nos detalhes.
 const projetos = [
   {
+    id: "fluxoly",
     titulo: "Fluxoly",
+    formato: "destaque",
+    cliente: "Lojas de dispositivos móveis premium",
+    cor: "#e8344e",
     imagem: "img/fluxoly.jpg",
     ano: "2026",
-    descricao: "Plataforma de gestão para lojas de dispositivos móveis premium: vendas, estoque, tabela de preços, assistência técnica, garantias e relatórios em um único fluxo.",
+    descricao: "Plataforma de gestão que junta a operação da loja em um único fluxo, do balcão à assistência técnica.",
+    destaques: ["Vendas e estoque", "Tabela de preços", "Assistência técnica e garantias", "Relatórios"],
     status: "producao",
     tecnologias: ["React", "Vite", "Tailwind CSS", "Python", "Flask", "SQLite", "pytest", "Playwright"],
     demo: "https://assistencia-system.vercel.app",
     codigo: "https://github.com/isaque-souza/assistencia_system",
   },
   {
-    titulo: "Carimbo",
-    imagem: "img/carimbo.jpg",
-    ano: "2026",
-    descricao: "Sistema multiempresa para agências de marketing e social media: clientes, contratos, cobranças por boleto/Pix com baixa automática, calendário de conteúdo, portal de aprovação do cliente, tarefas, métricas e legendas geradas por IA.",
-    tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Claude API"],
-    demo: "",
-    codigo: "",
-    privado: true,
-  },
-  {
-    titulo: "Meu Sabor",
-    imagem: "img/meu-sabor.jpg",
-    ano: "2026",
-    descricao: "ERP interno e enxuto para uma distribuidora de temperos: o vendedor tira o pedido no celular, a separação vê a demanda consolidada dos pedidos contra o estoque e o gerente acompanha o dia.",
-    tecnologias: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Vitest"],
-    demo: "",
-    codigo: "",
-    privado: true,
-  },
-  {
+    id: "rascunho",
     titulo: "Rascunho",
+    formato: "destaque",
+    cliente: "Escola de marketing",
+    cor: "#4b25a8",
     imagem: "img/rascunho.jpg",
     ano: "2026",
-    descricao: "Plataforma da Rascunho, escola de marketing: landing com checkout e acesso liberado pelo pagamento, área do aluno com progresso por aula, turmas ao vivo, financeiro integrado ao Asaas, certificados em PDF com QR Code e validação pública, e-mails automáticos e painel com indicadores.",
+    descricao: "Plataforma da escola, da página de venda ao certificado: o aluno compra, ganha acesso, assiste às aulas e recebe o certificado.",
+    destaques: [
+      "Landing com checkout e acesso liberado pelo pagamento",
+      "Área do aluno com progresso por aula e turmas ao vivo",
+      "Financeiro integrado ao Asaas",
+      "Certificados em PDF com QR Code e validação pública",
+      "E-mails automáticos e painel com indicadores",
+    ],
     status: "producao",
     tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Railway"],
     demo: "https://rascunho.app.br",
@@ -42,20 +40,43 @@ const projetos = [
     privado: true,
   },
   {
-    titulo: "Souza Tech OS",
-    imagem: "img/souza-tech-os.jpg",
+    id: "carimbo",
+    titulo: "Carimbo",
+    formato: "card",
+    cliente: "Agências de marketing e social media",
+    cor: "#6d3ae0",
+    imagem: "img/carimbo.jpg",
     ano: "2026",
-    descricao: "Sistema interno da Souza Tech que centraliza clientes, sistemas, projetos, tarefas, roadmap, contratos, licenças, financeiro e infraestrutura. Monorepo com testes E2E e deploy em VPS com Docker.",
-    tecnologias: ["React", "Vite", "Express", "Prisma", "PostgreSQL", "Turborepo", "Docker"],
+    descricao: "Sistema multiempresa com clientes, contratos, cobranças por boleto/Pix com baixa automática, calendário de conteúdo, portal de aprovação do cliente, tarefas, métricas e legendas geradas por IA.",
+    tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Claude API"],
     demo: "",
     codigo: "",
     privado: true,
   },
   {
-    titulo: "DEZFLOW",
-    imagem: "img/dezflow.jpg",
+    id: "meu-sabor",
+    titulo: "Meu Sabor",
+    formato: "card",
+    cliente: "Distribuidora de temperos",
+    cor: "#8a5410",
+    imagem: "img/meu-sabor.jpg",
     ano: "2026",
-    descricao: "Sistema de gestão para uma barbearia: agenda, atendimento, financeiro, comissão automática, estoque e fidelização. Monorepo com contrato de API em OpenAPI compartilhado entre front e back.",
+    descricao: "ERP interno e enxuto: o vendedor tira o pedido no celular, a separação vê a demanda consolidada dos pedidos contra o estoque e o gerente acompanha o dia.",
+    tecnologias: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Vitest"],
+    demo: "",
+    codigo: "",
+    privado: true,
+  },
+  {
+    id: "dezflow",
+    titulo: "DEZFLOW",
+    formato: "card",
+    cliente: "Barbearia",
+    cor: "#b4232a",
+    imagem: "img/dezflow.jpg",
+    foto: true,
+    ano: "2026",
+    descricao: "Agenda, atendimento, financeiro, comissão automática, estoque e fidelização. Monorepo com contrato de API em OpenAPI compartilhado entre front e back.",
     status: "desenvolvimento",
     tecnologias: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL"],
     demo: "",
@@ -63,54 +84,61 @@ const projetos = [
     privado: true,
   },
   {
+    id: "souza-tech-os",
+    titulo: "Souza Tech OS",
+    formato: "card",
+    cliente: "Uso interno da Souza Tech",
+    cor: "#2563eb",
+    imagem: "img/souza-tech-os.jpg",
+    ano: "2026",
+    descricao: "Centraliza clientes, sistemas, projetos, tarefas, roadmap, contratos, licenças, financeiro e infraestrutura. Monorepo com testes E2E e deploy em VPS com Docker.",
+    tecnologias: ["React", "Vite", "Express", "Prisma", "PostgreSQL", "Turborepo", "Docker"],
+    demo: "",
+    codigo: "",
+    privado: true,
+  },
+  {
+    id: "taldo-manager",
     titulo: "Taldo Manager",
+    formato: "linha",
+    cliente: "Projeto de estudo",
+    cor: "#0284c7",
     imagem: "img/taldo-manager.jpg",
     ano: "2026",
-    descricao: "Simulador de futebol estilo Football Manager feito do zero para estudar orientação a objetos e arquitetura: temporadas completas com escalação, lesões, suspensões e estatísticas. Arquitetura em camadas e 153 testes.",
+    descricao: "Simulador de futebol estilo Football Manager feito para estudar orientação a objetos e arquitetura em camadas. Temporadas completas e 153 testes.",
     tecnologias: ["Python", "FastAPI", "SQLite", "JavaScript", "pytest"],
     demo: "",
     codigo: "https://github.com/isaque-souza/TaldoManager",
   },
   {
+    id: "souza-tech",
     titulo: "Souza Tech",
+    formato: "linha",
+    cliente: "Landing page",
+    cor: "#00a3ff",
     imagem: "img/souza-tech.jpg",
     ano: "2026",
-    descricao: "Landing page da Souza Tech, com a logo animada em HTML/CSS (respeitando prefers-reduced-motion) e um kit de logo em SVG.",
+    descricao: "Site da Souza Tech com a logo animada em HTML/CSS, respeitando prefers-reduced-motion, e um kit de logo em SVG.",
     tecnologias: ["HTML", "CSS", "SVG"],
     demo: "https://isaque-souza.github.io/souza-tech/",
     codigo: "https://github.com/isaque-souza/souza-tech",
   },
   {
+    id: "bekind",
     titulo: "BeKind",
+    formato: "linha",
+    cliente: "TCC na ETEC Guarulhos",
+    cor: "#2f6fd6",
     imagem: "img/bekind.jpg",
     ano: "2023",
-    descricao: "Projeto de TCC do curso técnico na ETEC Guarulhos. 3º melhor projeto na FECEG e semifinalista na FEBRACE.",
+    descricao: "3º melhor projeto na FECEG e semifinalista na FEBRACE.",
     tecnologias: ["HTML", "CSS", "JavaScript"],
     demo: "https://isaque-souza.github.io/TCC-Bekind/",
     codigo: "https://github.com/isaque-souza/TCC-Bekind",
   },
 ];
 
-const tecnologias = [
-  "React", "Next.js", "TypeScript", "Python", "Flask", "FastAPI", "Node.js", "Express",
-  "PHP", "HTML", "CSS", "Tailwind CSS", "SQL", "PostgreSQL", "MySQL", "SQLite", "Prisma",
-  "APIs REST", "Docker", "pytest", "Playwright", "Git", "GitHub",
-];
-
-
-// Linhas do objeto exibido no hero: cada trecho é [classe de cor, texto]
-const codigoHero = [
-  [["tk-kw", "const "], ["tk-var", "isaque"], ["tk-pun", " = {"]],
-  [["", "  "], ["tk-key", "cargo"], ["tk-pun", ": "], ["tk-str", '"Desenvolvedor Júnior"'], ["tk-pun", ","]],
-  [["", "  "], ["tk-key", "local"], ["tk-pun", ": "], ["tk-str", '"Guarulhos, SP"'], ["tk-pun", ","]],
-  [["", "  "], ["tk-key", "stack"], ["tk-pun", ": ["], ["tk-str", '"React"'], ["tk-pun", ", "], ["tk-str", '"Next.js"'], ["tk-pun", ", "], ["tk-str", '"TypeScript"'], ["tk-pun", ", "], ["tk-str", '"Python"'], ["tk-pun", "],"]],
-  [["", "  "], ["tk-key", "emProducao"], ["tk-pun", ": ["], ["tk-str", '"Fluxoly"'], ["tk-pun", ", "], ["tk-str", '"Rascunho"'], ["tk-pun", "],"]],
-  [["", "  "], ["tk-key", "buscando"], ["tk-pun", ": "], ["tk-str", '"minha primeira vaga"'], ["tk-pun", ","]],
-  [["tk-pun", "};"]],
-];
-
-const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const ponteiroFino = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const statusTexto = { producao: "Em produção", desenvolvimento: "Em desenvolvimento" };
 
 function criarElemento(tag, classe, texto) {
   const el = document.createElement(tag);
@@ -129,175 +157,154 @@ function criarLink(texto, href) {
   return a;
 }
 
+function pintar(el, projeto) {
+  el.classList.add("com-cor");
+  el.style.setProperty("--cor", projeto.cor);
+  el.dataset.preview = projeto.imagem;
+}
+
+// A capa é um link para a demo quando existe; senão, só a imagem
+function criarCapa(projeto) {
+  const capa = projeto.demo ? criarLink("", projeto.demo) : criarElemento("div");
+  capa.className = projeto.foto ? "cover cover-foto" : "cover";
+  if (projeto.demo) capa.setAttribute("aria-label", `Abrir ${projeto.titulo}`);
+  const img = criarElemento("img");
+  img.src = projeto.imagem;
+  img.alt = projeto.foto ? "" : `Tela do ${projeto.titulo}`;
+  img.loading = "lazy";
+  capa.append(img);
+  return capa;
+}
+
+function criarLinks(projeto) {
+  const links = criarElemento("div", "project-links");
+  if (projeto.demo) links.append(criarLink("Ver ao vivo ↗", projeto.demo));
+  if (projeto.codigo) links.append(criarLink("Código ↗", projeto.codigo));
+  if (projeto.privado) links.append(criarElemento("span", "project-private", "Código privado"));
+  return links;
+}
+
+function criarStatus(projeto) {
+  return projeto.status ? criarElemento("span", `status status-${projeto.status}`, statusTexto[projeto.status]) : null;
+}
+
+function criarDestaque(projeto) {
+  const item = criarElemento("article", "featured-item");
+  item.id = projeto.id;
+  pintar(item, projeto);
+
+  const cabeca = criarElemento("div");
+  cabeca.append(criarElemento("h3", "", projeto.titulo), criarElemento("p", "client", projeto.cliente));
+  const status = criarStatus(projeto);
+  if (status) cabeca.append(status);
+
+  const desc = criarElemento("div", "featured-desc");
+  const lista = criarElemento("ul", "highlights");
+  for (const d of projeto.destaques) lista.append(criarElemento("li", "", d));
+  desc.append(criarElemento("p", "", projeto.descricao), lista);
+
+  const lado = criarElemento("div", "featured-side");
+  lado.append(criarElemento("p", "stack", projeto.tecnologias.join(", ")), criarLinks(projeto));
+
+  const info = criarElemento("div", "featured-info");
+  info.append(cabeca, desc, lado);
+  item.append(criarCapa(projeto), info);
+  return item;
+}
+
+function criarCard(projeto) {
+  const card = criarElemento("article", "card");
+  card.id = projeto.id;
+  pintar(card, projeto);
+
+  const topo = criarElemento("div", "card-top");
+  topo.append(criarElemento("h3", "", projeto.titulo), criarStatus(projeto) || criarElemento("span", "stack", projeto.ano));
+
+  card.append(
+    criarCapa(projeto),
+    topo,
+    criarElemento("p", "client", projeto.cliente),
+    criarElemento("p", "card-desc", projeto.descricao),
+    criarElemento("p", "stack", projeto.tecnologias.join(", ")),
+    criarLinks(projeto)
+  );
+  return card;
+}
+
+function criarLinha(projeto) {
+  const linha = criarElemento("li");
+  linha.id = projeto.id;
+  pintar(linha, projeto);
+
+  const nome = criarElemento("div", "nome", projeto.titulo);
+  nome.append(criarElemento("span", "", `${projeto.cliente} · ${projeto.ano}`));
+  linha.append(nome, criarElemento("p", "", projeto.descricao), criarLinks(projeto));
+  return linha;
+}
+
 function renderizarProjetos() {
-  const lista = document.getElementById("lista-projetos");
-
+  const alvos = {
+    destaque: [document.getElementById("projetos-destaque"), criarDestaque],
+    card: [document.getElementById("projetos-cards"), criarCard],
+    linha: [document.getElementById("projetos-lista"), criarLinha],
+  };
   for (const projeto of projetos) {
-    const card = criarElemento("article", "project reveal");
-    card.dataset.producao = String(projeto.status === "producao");
-    card.dataset.aberto = String(Boolean(projeto.codigo));
-
-    const topo = criarElemento("div", "project-top");
-    topo.append(criarElemento("h3", "", projeto.titulo), criarElemento("span", "project-year", projeto.ano));
-
-    const tags = criarElemento("ul", "tags");
-    for (const tec of projeto.tecnologias) tags.append(criarElemento("li", "", tec));
-
-    const links = criarElemento("div", "project-links");
-    if (projeto.demo) links.append(criarLink("Ver demo ↗", projeto.demo));
-    if (projeto.codigo) links.append(criarLink("Código ↗", projeto.codigo));
-    if (projeto.privado) links.append(criarElemento("span", "project-private", "Código privado"));
-
-    // Sem imagem, o card mostra o nome do projeto no lugar da captura
-    const capa = criarElemento("div", "project-cover");
-    if (projeto.imagem) {
-      const img = criarElemento("img");
-      img.src = projeto.imagem;
-      img.alt = `Tela do projeto ${projeto.titulo}`;
-      img.loading = "lazy";
-      capa.append(img);
-    } else {
-      capa.append(criarElemento("span", "", projeto.titulo));
-    }
-    if (projeto.status === "producao") capa.append(criarElemento("span", "badge badge-live", "Em produção"));
-    if (projeto.status === "desenvolvimento") capa.append(criarElemento("span", "badge", "Em desenvolvimento"));
-
-    const corpo = criarElemento("div", "project-body");
-    corpo.append(topo, criarElemento("p", "", projeto.descricao), tags, links);
-    card.append(capa, corpo);
-    lista.append(card);
+    const [lista, criar] = alvos[projeto.formato];
+    lista.append(criar(projeto));
   }
 
-  document.getElementById("qtd-projetos").textContent = projetos.length;
-  document.getElementById("qtd-producao").textContent = projetos.filter((p) => p.status === "producao").length;
-}
-
-function renderizarFaixa() {
-  const faixa = document.getElementById("faixa-tecnologias");
-  // Lista duplicada para o loop da animação ficar contínuo
-  for (const tec of [...tecnologias, ...tecnologias]) faixa.append(criarElemento("span", "", tec));
-}
-
-// Digita o objeto do hero caractere por caractere, mantendo as cores
-function digitarCodigo() {
-  const alvo = document.getElementById("codigo-hero");
-  const trechos = [];
-  codigoHero.forEach((linha, i) => {
-    trechos.push(...linha);
-    if (i < codigoHero.length - 1) trechos.push(["", "\n"]);
+  // As palavras do título herdam a cor e o print do projeto correspondente
+  document.querySelectorAll(".nicho").forEach((link) => {
+    const projeto = projetos.find((p) => p.id === link.dataset.projeto);
+    if (projeto) pintar(link, projeto);
   });
-  const total = trechos.reduce((soma, [, texto]) => soma + texto.length, 0);
-
-  const desenhar = (qtd) => {
-    alvo.textContent = "";
-    let restante = qtd;
-    for (const [classe, texto] of trechos) {
-      if (restante <= 0) break;
-      const parte = texto.slice(0, restante);
-      restante -= parte.length;
-      alvo.append(classe ? criarElemento("span", classe, parte) : document.createTextNode(parte));
-    }
-  };
-
-  if (movimentoReduzido) return desenhar(total);
-
-  let qtd = 0;
-  setTimeout(function passo() {
-    qtd += 1;
-    desenhar(qtd);
-    if (qtd < total) setTimeout(passo, 14 + Math.random() * 26);
-  }, 900);
 }
 
-// Grade de pontos do hero que acende perto do cursor
-function iniciarGradeHero() {
-  const hero = document.querySelector(".hero");
-  const canvas = hero.querySelector(".hero-grid");
-  const glow = hero.querySelector(".hero-glow");
-  const ctx = canvas.getContext("2d");
-  const espaco = 28;
-  const raio = 160;
-  let largura = 0, altura = 0, cor = "", corForte = "";
-  let mouse = { x: -9999, y: -9999 };
-  let visivel = true;
+// Print que segue o cursor sobre as palavras do título e a lista de outros projetos
+function iniciarPreview() {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const caixa = document.querySelector(".preview");
+  const img = caixa.querySelector("img");
+  let alvo = { x: 0, y: 0 };
+  let atual = { x: 0, y: 0 };
   let quadro = null;
 
-  const lerCores = () => {
-    const estilo = getComputedStyle(document.documentElement);
-    cor = estilo.getPropertyValue("--muted").trim();
-    corForte = estilo.getPropertyValue("--accent").trim();
+  const mover = () => {
+    atual.x += (alvo.x - atual.x) * 0.2;
+    atual.y += (alvo.y - atual.y) * 0.2;
+    caixa.style.transform = `translate(${atual.x}px, ${atual.y}px)`;
+    quadro = Math.abs(alvo.x - atual.x) + Math.abs(alvo.y - atual.y) > 0.5 ? requestAnimationFrame(mover) : null;
   };
 
-  const redimensionar = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    largura = hero.clientWidth;
-    altura = hero.clientHeight;
-    canvas.width = largura * dpr;
-    canvas.height = altura * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  };
-
-  const desenhar = (tempo) => {
-    ctx.clearRect(0, 0, largura, altura);
-    for (let x = espaco / 2; x < largura; x += espaco) {
-      for (let y = espaco / 2; y < altura; y += espaco) {
-        const dist = Math.hypot(x - mouse.x, y - mouse.y);
-        const perto = Math.max(0, 1 - dist / raio);
-        const onda = movimentoReduzido ? 0 : (Math.sin(x * 0.012 + y * 0.018 + tempo * 0.0012) + 1) / 2;
-        ctx.globalAlpha = 0.14 + onda * 0.12 + perto * 0.75;
-        ctx.fillStyle = perto > 0.05 ? corForte : cor;
-        ctx.beginPath();
-        ctx.arc(x, y, 1 + perto * 1.8, 0, Math.PI * 2);
-        ctx.fill();
-      }
+  const posicionar = (e) => {
+    // Fica à direita do cursor, ou à esquerda perto da borda da tela
+    const largura = caixa.offsetWidth;
+    const altura = caixa.offsetHeight;
+    const x = e.clientX + 24 + largura > window.innerWidth ? e.clientX - largura - 24 : e.clientX + 24;
+    alvo = { x, y: Math.min(e.clientY - altura / 2, window.innerHeight - altura - 16) };
+    if (reduzido) {
+      atual = { ...alvo };
+      caixa.style.transform = `translate(${atual.x}px, ${atual.y}px)`;
+    } else if (!quadro) {
+      quadro = requestAnimationFrame(mover);
     }
-    ctx.globalAlpha = 1;
   };
 
-  const loop = (tempo) => {
-    desenhar(tempo);
-    quadro = visivel && !movimentoReduzido ? requestAnimationFrame(loop) : null;
-  };
-
-  const retomar = () => {
-    if (!quadro && visivel) quadro = requestAnimationFrame(loop);
-  };
-
-  lerCores();
-  redimensionar();
-  if (movimentoReduzido) desenhar(0);
-  else retomar();
-
-  window.addEventListener("resize", () => {
-    redimensionar();
-    desenhar(performance.now());
+  document.querySelectorAll(".nicho, .others-list li").forEach((el) => {
+    el.addEventListener("pointerenter", (e) => {
+      img.src = el.dataset.preview;
+      posicionar(e);
+      atual = { ...alvo };
+      caixa.style.transform = `translate(${atual.x}px, ${atual.y}px)`;
+      caixa.classList.add("ativo");
+    });
+    el.addEventListener("pointermove", posicionar);
+    el.addEventListener("pointerleave", () => caixa.classList.remove("ativo"));
   });
-
-  hero.addEventListener("pointermove", (e) => {
-    const r = hero.getBoundingClientRect();
-    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
-    glow.style.setProperty("--gx", `${mouse.x}px`);
-    glow.style.setProperty("--gy", `${mouse.y}px`);
-    if (movimentoReduzido) desenhar(0);
-  });
-  hero.addEventListener("pointerleave", () => {
-    mouse = { x: -9999, y: -9999 };
-    if (movimentoReduzido) desenhar(0);
-  });
-
-  // Pausa a animação quando o hero sai da tela
-  new IntersectionObserver(([entrada]) => {
-    visivel = entrada.isIntersecting;
-    if (visivel && !movimentoReduzido) retomar();
-  }).observe(hero);
-
-  return () => {
-    lerCores();
-    desenhar(performance.now());
-  };
 }
 
-function iniciarTema(aoTrocar) {
+function iniciarTema() {
   const raiz = document.documentElement;
   document.querySelector(".theme-toggle").addEventListener("click", () => {
     const tema = raiz.dataset.theme === "dark" ? "light" : "dark";
@@ -305,186 +312,34 @@ function iniciarTema(aoTrocar) {
     try {
       localStorage.setItem("tema", tema);
     } catch (e) {}
-    aoTrocar();
-  });
-}
-
-function iniciarAnimacoes() {
-  const itens = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    itens.forEach((el) => el.classList.add("visible"));
-    return;
-  }
-  const observer = new IntersectionObserver(
-    (entradas) => {
-      for (const entrada of entradas) {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add("visible");
-          observer.unobserve(entrada.target);
-        }
-      }
-    },
-    { threshold: 0.1 }
-  );
-  itens.forEach((el) => observer.observe(el));
-}
-
-// Spotlight na borda e leve inclinação 3D nos cards
-function iniciarCards() {
-  if (!ponteiroFino) return;
-  document.querySelectorAll(".project").forEach((card) => {
-    card.addEventListener("pointermove", (e) => {
-      const r = card.getBoundingClientRect();
-      const x = e.clientX - r.left;
-      const y = e.clientY - r.top;
-      card.style.setProperty("--mx", `${x}px`);
-      card.style.setProperty("--my", `${y}px`);
-      if (movimentoReduzido) return;
-      const rx = (y / r.height - 0.5) * -4;
-      const ry = (x / r.width - 0.5) * 5;
-      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-    });
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
-  });
-}
-
-function iniciarFiltros() {
-  const botoes = document.querySelectorAll(".filter");
-  const cards = document.querySelectorAll(".project");
-
-  botoes.forEach((botao) => {
-    botao.addEventListener("click", () => {
-      const filtro = botao.dataset.filtro;
-      botoes.forEach((b) => {
-        b.classList.toggle("active", b === botao);
-        b.setAttribute("aria-pressed", String(b === botao));
-      });
-
-      let atraso = 0;
-      cards.forEach((card) => {
-        const mostrar = filtro === "todos" || card.dataset[filtro] === "true";
-        card.classList.toggle("oculto", !mostrar);
-        if (!mostrar || movimentoReduzido) return;
-        card.classList.add("visible", "entrando");
-        card.style.transitionDelay = `${atraso}ms`;
-        atraso += 60;
-        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove("entrando")));
-        setTimeout(() => (card.style.transitionDelay = ""), atraso + 400);
-      });
-    });
-  });
-}
-
-// Botões que seguem levemente o cursor
-function iniciarMagneticos() {
-  if (!ponteiroFino || movimentoReduzido) return;
-  document.querySelectorAll(".magnetic").forEach((el) => {
-    el.addEventListener("pointermove", (e) => {
-      const r = el.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      el.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
-    });
-    el.addEventListener("pointerleave", () => (el.style.transform = ""));
   });
 }
 
 function iniciarCopiarEmail() {
-  const botao = document.querySelector(".copy-email");
-  const rotulo = botao.querySelector(".copy-label");
-  const original = rotulo.textContent;
+  const botao = document.querySelector(".email");
+  const dica = document.getElementById("email-dica");
+  const dicaOriginal = dica.innerHTML;
+  let espera = null;
+
   botao.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(botao.dataset.email);
-      rotulo.textContent = "E-mail copiado ✓";
+      dica.textContent = "E-mail copiado.";
       botao.classList.add("copiado");
     } catch (e) {
-      rotulo.textContent = "Não foi possível copiar";
+      window.location.href = `mailto:${botao.dataset.email}`;
+      return;
     }
-    setTimeout(() => {
-      rotulo.textContent = original;
+    clearTimeout(espera);
+    espera = setTimeout(() => {
+      dica.innerHTML = dicaOriginal;
       botao.classList.remove("copiado");
-    }, 2200);
+    }, 2400);
   });
-}
-
-// Barra de progresso no topo e linha da formação que se preenche ao rolar
-function iniciarRolagem() {
-  const header = document.querySelector(".site-header");
-  const raiz = document.documentElement;
-  const timelines = document.querySelectorAll(".timeline");
-  let agendado = false;
-
-  const atualizar = () => {
-    agendado = false;
-    const max = raiz.scrollHeight - window.innerHeight;
-    raiz.style.setProperty("--progresso", max > 0 ? (window.scrollY / max).toFixed(4) : 0);
-    header.classList.toggle("scrolled", window.scrollY > 8);
-
-    const linhaDeLeitura = window.innerHeight * 0.7;
-    timelines.forEach((lista) => {
-      const r = lista.getBoundingClientRect();
-      const fracao = Math.min(1, Math.max(0, (linhaDeLeitura - r.top) / r.height));
-      lista.style.setProperty("--preenchido", fracao.toFixed(3));
-      lista.querySelectorAll("li").forEach((item) => {
-        item.classList.toggle("ativo", item.getBoundingClientRect().top + 12 < linhaDeLeitura);
-      });
-    });
-  };
-
-  window.addEventListener("scroll", () => {
-    if (!agendado) {
-      agendado = true;
-      requestAnimationFrame(atualizar);
-    }
-  }, { passive: true });
-  window.addEventListener("resize", atualizar);
-  atualizar();
-}
-
-function iniciarMenu() {
-  const botao = document.querySelector(".nav-toggle");
-  const nav = document.getElementById("menu");
-  const links = nav.querySelectorAll("a");
-
-  const fechar = () => {
-    nav.classList.remove("open");
-    botao.setAttribute("aria-expanded", "false");
-  };
-
-  botao.addEventListener("click", () => {
-    const aberto = nav.classList.toggle("open");
-    botao.setAttribute("aria-expanded", String(aberto));
-  });
-  links.forEach((link) => link.addEventListener("click", fechar));
-  document.addEventListener("keydown", (e) => e.key === "Escape" && fechar());
-
-  // Destaca no menu a seção visível
-  const observer = new IntersectionObserver(
-    (entradas) => {
-      for (const entrada of entradas) {
-        if (!entrada.isIntersecting) continue;
-        links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entrada.target.id}`));
-      }
-    },
-    { rootMargin: "-45% 0px -50% 0px" }
-  );
-  document.querySelectorAll("main section[id]").forEach((secao) => observer.observe(secao));
 }
 
 renderizarProjetos();
-renderizarFaixa();
-const redesenharGrade = iniciarGradeHero();
-iniciarTema(redesenharGrade);
-iniciarAnimacoes();
-iniciarCards();
-iniciarFiltros();
-iniciarMagneticos();
+iniciarPreview();
+iniciarTema();
 iniciarCopiarEmail();
-iniciarRolagem();
-iniciarMenu();
-digitarCodigo();
 document.getElementById("ano").textContent = new Date().getFullYear();
-requestAnimationFrame(() => document.body.classList.add("carregado"));
