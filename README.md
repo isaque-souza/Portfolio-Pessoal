@@ -12,8 +12,11 @@ Destaques:
 
 - Os projetos são o centro da página, apresentados como estudos de caso em três tamanhos: destaques, cards e uma lista de outros projetos
 - O título do hero cita os tipos de negócio atendidos; cada palavra tem a cor da marca do projeto correspondente e mostra o print do sistema ao passar o mouse
-- Cada capa usa a cor real da marca do projeto; o resto do site é neutro
+- Cada capa usa a cor real da marca do projeto; o resto do site usa neutros frios com o azul da Souza Tech como acento
+- Ícones e logos das tecnologias num sprite SVG embutido no `index.html` (Iconify: simple-icons, devicon, mdi e lucide)
 - Tema claro e escuro, seguindo a preferência do sistema e lembrando a escolha do visitante
+- Memoji no hero que acena ao carregar, inclina na direção do mouse e troca de frase a cada clique
+- Seção "Fora do código" com minijogo de embaixadinhas (recorde salvo no navegador), bloco de Minecraft que quebra, equalizador da playlist e seletor da cor de destaque do site
 - E-mail que copia com um clique
 - Movimento só em resposta à interação, layout responsivo, foco visível no teclado e respeito a `prefers-reduced-motion`
 
@@ -41,7 +44,7 @@ Os projetos são renderizados a partir da lista `projetos` no início de `script
   foto: true,                         // opcional; use quando a imagem for foto e não print de tela
   ano: "2026",
   descricao: "O que o sistema faz.",
-  destaques: ["Funcionalidade 1"],    // usado no formato "destaque"
+  destaques: [["estoque", "Vendas e estoque"]], // [ícone do sprite, texto]; formato "destaque"
   status: "producao",                 // opcional: "producao" ou "desenvolvimento"
   tecnologias: ["React", "TypeScript"],
   demo: "https://...",                // opcional

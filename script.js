@@ -1,6 +1,7 @@
 // Para adicionar um novo projeto, basta incluir um item na lista.
 // formato: "destaque" (grande, com lista de funcionalidades), "card" ou "linha" (lista de outros projetos).
 // cor: cor da marca do projeto, usada no fundo da capa e nos detalhes.
+// destaques: [ícone, texto]; os ícones ficam no sprite SVG do index.html (id "i-<nome>").
 const projetos = [
   {
     id: "fluxoly",
@@ -11,7 +12,12 @@ const projetos = [
     imagem: "img/fluxoly.jpg",
     ano: "2026",
     descricao: "Plataforma de gestão que junta a operação da loja em um único fluxo, do balcão à assistência técnica.",
-    destaques: ["Vendas e estoque", "Tabela de preços", "Assistência técnica e garantias", "Relatórios"],
+    destaques: [
+      ["estoque", "Vendas e estoque"],
+      ["preco", "Tabela de preços"],
+      ["assistencia", "Assistência técnica e garantias"],
+      ["relatorio", "Relatórios"],
+    ],
     status: "producao",
     tecnologias: ["React", "Vite", "Tailwind CSS", "Python", "Flask", "SQLite", "pytest", "Playwright"],
     demo: "https://assistencia-system.vercel.app",
@@ -27,11 +33,11 @@ const projetos = [
     ano: "2026",
     descricao: "Plataforma da escola, da página de venda ao certificado: o aluno compra, ganha acesso, assiste às aulas e recebe o certificado.",
     destaques: [
-      "Landing com checkout e acesso liberado pelo pagamento",
-      "Área do aluno com progresso por aula e turmas ao vivo",
-      "Financeiro integrado ao Asaas",
-      "Certificados em PDF com QR Code e validação pública",
-      "E-mails automáticos e painel com indicadores",
+      ["checkout", "Landing com checkout e acesso liberado pelo pagamento"],
+      ["aula", "Área do aluno com progresso por aula e turmas ao vivo"],
+      ["financeiro", "Financeiro integrado ao Asaas"],
+      ["certificado", "Certificados em PDF com QR Code e validação pública"],
+      ["email-auto", "E-mails automáticos e painel com indicadores"],
     ],
     status: "producao",
     tecnologias: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Railway"],
@@ -147,12 +153,23 @@ function criarElemento(tag, classe, texto) {
   return el;
 }
 
+function criarIcone(nome) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "icon");
+  svg.setAttribute("aria-hidden", "true");
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("href", `#i-${nome}`);
+  svg.append(use);
+  return svg;
+}
+
 function criarLink(texto, href) {
   const a = criarElemento("a", "", texto);
   a.href = href;
   if (href.startsWith("http")) {
     a.target = "_blank";
     a.rel = "noopener";
+    if (texto) a.append(criarIcone("seta"));
   }
   return a;
 }
@@ -178,8 +195,8 @@ function criarCapa(projeto) {
 
 function criarLinks(projeto) {
   const links = criarElemento("div", "project-links");
-  if (projeto.demo) links.append(criarLink("Ver ao vivo ↗", projeto.demo));
-  if (projeto.codigo) links.append(criarLink("Código ↗", projeto.codigo));
+  if (projeto.demo) links.append(criarLink("Ver ao vivo", projeto.demo));
+  if (projeto.codigo) links.append(criarLink("Código", projeto.codigo));
   if (projeto.privado) links.append(criarElemento("span", "project-private", "Código privado"));
   return links;
 }
@@ -200,7 +217,11 @@ function criarDestaque(projeto) {
 
   const desc = criarElemento("div", "featured-desc");
   const lista = criarElemento("ul", "highlights");
-  for (const d of projeto.destaques) lista.append(criarElemento("li", "", d));
+  for (const [icone, texto] of projeto.destaques) {
+    const li = criarElemento("li", "", texto);
+    li.prepend(criarIcone(icone));
+    lista.append(li);
+  }
   desc.append(criarElemento("p", "", projeto.descricao), lista);
 
   const lado = criarElemento("div", "featured-side");
@@ -317,7 +338,8 @@ function iniciarTema() {
 
 function iniciarCopiarEmail() {
   const botao = document.querySelector(".email");
-  const dica = document.getElementById("email-dica");
+  const dica = document.querySelector("#email-dica span");
+  const iconeDica = document.querySelector("#email-dica use");
   const dicaOriginal = dica.innerHTML;
   let espera = null;
 
@@ -325,6 +347,7 @@ function iniciarCopiarEmail() {
     try {
       await navigator.clipboard.writeText(botao.dataset.email);
       dica.textContent = "E-mail copiado.";
+      iconeDica.setAttribute("href", "#i-ok");
       botao.classList.add("copiado");
     } catch (e) {
       window.location.href = `mailto:${botao.dataset.email}`;
@@ -333,13 +356,267 @@ function iniciarCopiarEmail() {
     clearTimeout(espera);
     espera = setTimeout(() => {
       dica.innerHTML = dicaOriginal;
+      iconeDica.setAttribute("href", "#i-copiar");
       botao.classList.remove("copiado");
     }, 2400);
   });
+}
+
+const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function lerSalvo(chave) {
+  try {
+    return localStorage.getItem(chave);
+  } catch (e) {
+    return null;
+  }
+}
+
+function salvar(chave, valor) {
+  try {
+    localStorage.setItem(chave, valor);
+  } catch (e) {}
+}
+
+// Reinicia uma animação de CSS removendo e recolocando a classe
+function animar(el, classe) {
+  el.classList.remove(classe);
+  void el.offsetWidth;
+  el.classList.add(classe);
+}
+
+// Memoji do hero: fala uma frase nova a cada clique e inclina na direção do mouse
+function iniciarMemoji() {
+  const botao = document.querySelector(".memoji");
+  const img = botao.querySelector("img");
+  const balao = document.querySelector(".balao");
+  const frases = [
+    "E aí!",
+    "Passa o mouse nas palavras coloridas",
+    "Bora ver os projetos?",
+    "Vai, Corinthians!",
+    "Tem embaixadinha lá embaixo",
+    "Aceito café e oportunidade",
+  ];
+  const rostos = [
+    ["img/memoji-oi.webp", "Memoji do Isaque acenando"],
+    ["img/memoji-rosto.webp", "Memoji do Isaque sorrindo"],
+    ["img/memoji-tchau.webp", "Memoji do Isaque com a mão levantada"],
+  ];
+  let frase = 0;
+  let rosto = 0;
+
+  botao.addEventListener("click", () => {
+    frase = (frase + 1) % frases.length;
+    rosto = (rosto + 1) % rostos.length;
+    balao.textContent = frases[frase];
+    [img.src, img.alt] = rostos[rosto];
+    animar(balao, "trocou");
+    animar(botao, "pulo");
+  });
+
+  if (movimentoReduzido || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  let agendado = false;
+  window.addEventListener("pointermove", (e) => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(() => {
+      agendado = false;
+      const r = botao.getBoundingClientRect();
+      if (r.bottom < 0) return;
+      const dx = e.clientX - (r.left + r.width / 2);
+      const inclinar = Math.max(-8, Math.min(8, dx / 60));
+      botao.style.setProperty("--inclinar", `${inclinar}deg`);
+      botao.style.setProperty("--desloca", `${inclinar * 0.8}px`);
+    });
+  });
+}
+
+// Embaixadinhas: cada clique na bola é um toque; se ela cair no chão, a contagem zera
+function iniciarEmbaixadinhas() {
+  const campo = document.querySelector(".campo");
+  const bola = campo.querySelector(".bola");
+  const contador = document.getElementById("embaixadinhas");
+  const marcaRecorde = document.getElementById("recorde");
+  const gravidade = 1500;
+  const tamanho = 52;
+  let recorde = Number(lerSalvo("recorde-embaixadinhas")) || 0;
+  let toques = 0;
+  let largura = 0, chao = 0;
+  let x = 0, y = 0, vx = 0, vy = 0, giro = 0;
+  let quadro = null, ultimo = 0;
+
+  marcaRecorde.textContent = recorde;
+
+  const medir = () => {
+    largura = campo.clientWidth - tamanho;
+    chao = campo.clientHeight - tamanho;
+  };
+
+  const desenhar = () => {
+    bola.style.transform = `translate(${x}px, ${y}px) rotate(${giro}deg)`;
+  };
+
+  const passo = (agora) => {
+    const dt = Math.min((agora - ultimo) / 1000, 0.032);
+    ultimo = agora;
+    vy += gravidade * dt;
+    x += vx * dt;
+    y += vy * dt;
+    giro += vx * dt * 3;
+
+    if (x < 0 || x > largura) {
+      x = Math.max(0, Math.min(largura, x));
+      vx *= -0.8;
+    }
+    if (y < 0) {
+      y = 0;
+      vy = Math.abs(vy) * 0.4;
+    }
+    if (y >= chao) {
+      y = chao;
+      if (toques > 0) {
+        if (toques > recorde) {
+          recorde = toques;
+          marcaRecorde.textContent = recorde;
+          salvar("recorde-embaixadinhas", recorde);
+        }
+        toques = 0;
+        contador.textContent = 0;
+      }
+      vy = -vy * 0.45;
+      vx *= 0.85;
+      if (Math.abs(vy) < 80) vy = 0;
+    }
+
+    desenhar();
+    const parada = vy === 0 && y === chao && Math.abs(vx) < 5;
+    quadro = parada ? null : requestAnimationFrame(passo);
+  };
+
+  const chutar = () => {
+    vy = -(620 + Math.random() * 140);
+    vx = (Math.random() - 0.5) * 360;
+    toques += 1;
+    contador.textContent = toques;
+    if (!quadro) {
+      ultimo = performance.now();
+      quadro = requestAnimationFrame(passo);
+    }
+  };
+
+  medir();
+  x = largura / 2;
+  y = chao;
+  desenhar();
+
+  bola.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    chutar();
+  });
+  // Teclado (Enter/Espaço) dispara click sem pointerdown
+  bola.addEventListener("click", (e) => {
+    if (e.detail === 0) chutar();
+  });
+  window.addEventListener("resize", () => {
+    medir();
+    x = Math.min(x, largura);
+    y = Math.min(y, chao);
+    desenhar();
+  });
+}
+
+// Bloco de grama: racha a cada clique e quebra no quinto
+function iniciarBloco() {
+  const bloco = document.querySelector(".bloco");
+  const tile = bloco.closest(".tile");
+  const contador = document.getElementById("blocos");
+  const cores = ["#5d9b3a", "#6cb043", "#8b5a2b", "#7a4e24", "#9c6a3a"];
+  let estagio = 0;
+  let quebrados = 0;
+  let ocupado = false;
+
+  bloco.addEventListener("click", () => {
+    if (ocupado) return;
+    estagio += 1;
+    if (estagio < 5) {
+      bloco.dataset.estagio = estagio;
+      animar(bloco, "batida");
+      return;
+    }
+
+    ocupado = true;
+    quebrados += 1;
+    contador.textContent = quebrados;
+    animar(bloco, "quebrou");
+
+    if (!movimentoReduzido) {
+      const r = bloco.getBoundingClientRect();
+      const base = tile.getBoundingClientRect();
+      for (let i = 0; i < 12; i++) {
+        const p = criarElemento("span", "particula");
+        p.style.left = `${r.left - base.left + r.width / 2}px`;
+        p.style.top = `${r.top - base.top + r.height / 2}px`;
+        p.style.background = cores[i % cores.length];
+        p.style.setProperty("--px", `${(Math.random() - 0.5) * 180}px`);
+        p.style.setProperty("--py", `${(Math.random() - 0.7) * 160}px`);
+        p.style.setProperty("--pr", `${Math.random() * 360}deg`);
+        tile.append(p);
+        p.addEventListener("animationend", () => p.remove());
+      }
+    }
+
+    setTimeout(() => {
+      estagio = 0;
+      bloco.dataset.estagio = 0;
+      bloco.classList.remove("quebrou");
+      animar(bloco, "voltou");
+      ocupado = false;
+    }, 700);
+  });
+}
+
+// Cor de destaque escolhida pelo visitante no card de design
+function iniciarCores() {
+  const raiz = document.documentElement;
+  const botoes = document.querySelectorAll(".cores button");
+  const marcar = (cor) => {
+    botoes.forEach((b) => b.setAttribute("aria-checked", String(b.dataset.cor === cor)));
+  };
+  marcar(raiz.dataset.cor || "azul");
+
+  botoes.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const cor = botao.dataset.cor;
+      if (cor === "azul") delete raiz.dataset.cor;
+      else raiz.dataset.cor = cor;
+      salvar("cor", cor);
+      marcar(cor);
+    });
+  });
+}
+
+// O equalizador só anima com o card na tela; o Memoji do contato acena ao aparecer
+function iniciarObservadores() {
+  const musica = document.querySelector(".tile-musica");
+  const contato = document.querySelector(".contact");
+  new IntersectionObserver(([e]) => musica.classList.toggle("tocando", e.isIntersecting)).observe(musica);
+  const obs = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    contato.classList.add("visivel");
+    obs.disconnect();
+  }, { threshold: 0.4 });
+  obs.observe(contato);
 }
 
 renderizarProjetos();
 iniciarPreview();
 iniciarTema();
 iniciarCopiarEmail();
+iniciarMemoji();
+iniciarEmbaixadinhas();
+iniciarBloco();
+iniciarCores();
+iniciarObservadores();
 document.getElementById("ano").textContent = new Date().getFullYear();
+requestAnimationFrame(() => document.body.classList.add("carregado"));
